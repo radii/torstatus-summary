@@ -50,7 +50,8 @@ for d in domains:
 totbw = sum(bw[d] for d in bw)
 totebw = sum(ebw[d] for d in ebw)
 
-print totbw, totebw, len(L)
+print "Total BW: %d MB/s Exit BW: %d MB/s Total Relays: %d Exits: %d" % \
+      (totbw / 1024, totebw / 1024, len(L), len([i for i in L if i.exit]))
 
 for (e,d) in sorted([(ebw[i], i) for i in domains], reverse=True):
     relays = sorted([(r.bw, r) for r in L if r.domain == d], reverse=True)

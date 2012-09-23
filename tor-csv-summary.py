@@ -9,6 +9,12 @@ class router(object):
     import csv
     rl = [router(i) for i in csv.reader(open('Tor_query_EXPORT.csv'))][1:]
     '''
+
+    def to_int(s):
+        '''Convert s to an int, mapping the string "N/A" to 0.'''
+        if s == "N/A": return 0
+        return int(s)
+
     def __init__(self, fieldlist):
         (nick, cc, bw, uptime, ip, hostname, orport, dirport, auth, exit, fast,
          guard, named, stable, running, valid, v2dir, platform, hibernating,
@@ -24,7 +30,7 @@ class router(object):
             self.domain = '.'.join(hostname.split('.')[-2:])
         (self.bw, self.uptime, self.orport, self.dirport, self.auth, self.exit,
          self.fast, self.guard, self.named, self.stable, self.running,
-         self.valid, self.v2dir, self.hibernating, self.badexit) = map(int,
+         self.valid, self.v2dir, self.hibernating, self.badexit) = map(to_int,
             [bw, uptime, orport, dirport, auth, exit, fast, guard, named,
              stable, running, valid, v2dir, hibernating, badexit])
     def __repr__(self):

@@ -10,12 +10,11 @@ class router(object):
     rl = [router(i) for i in csv.reader(open('Tor_query_EXPORT.csv'))][1:]
     '''
 
-    def to_int(s):
-        '''Convert s to an int, mapping the string "N/A" to 0.'''
-        if s == "N/A": return 0
-        return int(s)
-
     def __init__(self, fieldlist):
+        def to_int(s):
+            '''Convert s to an int, mapping the string "N/A" to 0.'''
+            if s == "N/A": return 0
+            return int(s)
         (nick, cc, bw, uptime, ip, hostname, orport, dirport, auth, exit, fast,
          guard, named, stable, running, valid, v2dir, platform, hibernating,
          badexit) = fieldlist
